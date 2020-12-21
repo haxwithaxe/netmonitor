@@ -1,0 +1,11 @@
+[Unit]
+Description=Ping my server every minute to track uptime
+
+[Timer]
+OnBootSec=1m
+OnUnitActiveSec=1m
+Unit=netsensor.service
+
+[Install]
+After=network.target
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+description=Network Uptime Monitor
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/netmonitor -l 0.0.0.0 -p 7777 -c /usr/local/etc/netmonitor.yml
+
+[Install]
+WantedBy=multi-user.target

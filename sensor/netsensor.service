@@ -1,0 +1,7 @@
+[Unit]
+Description=Network Uptime Sensor
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/netsensor -s bunbun.haxwithaxe.net -p 7777
