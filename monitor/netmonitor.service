@@ -3,7 +3,7 @@ description=Network Uptime Monitor
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/netmonitor -l 0.0.0.0 -p 7777 -c /usr/local/etc/netmonitor.yml
+ExecStart=/usr/local/bin/netmonitor -c /usr/local/etc/netmonitor.json
 
 [Install]
 WantedBy=multi-user.target

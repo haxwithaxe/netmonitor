@@ -96,8 +96,8 @@ class Server:
 
     def __init__(self, config_file):
         self.config = json.load(config_file)
-        self.address = config.get('listen_address')
-        self.port = config.get('listen_port')
+        self.address = self.config.get('listen_address')
+        self.port = self.config.get('listen_port')
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.settimeout(SOCKET_TIMEOUT)
         self._clients = {}
@@ -146,13 +146,8 @@ class Server:
             )
 
 
-
-def main(config_file):
-    Server(config_file).serve_forever()
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', type=argparse.FileType('r'), required=True)
     args = parser.parse_args()
-    main(args.listen, args.port, args.config)
+    Server(args.config).serve_forever()
