@@ -1,5 +1,5 @@
 [Unit]
-Description=Ping my server every minute to track uptime
+Description=Network Uptime Sensor
 
 [Timer]
 OnBootSec=1m

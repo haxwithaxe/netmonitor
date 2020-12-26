@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/netsensor -s bunbun.haxwithaxe.net -p 7777 --boot
+ExecStart=/usr/local/bin/netsensor --config /usr/local/etc/netsensor.json --boot
 
 [Install]
 WantedBy=multi-user.target
