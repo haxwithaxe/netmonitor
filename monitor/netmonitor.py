@@ -9,8 +9,6 @@ import smtplib
 import socket
 import ssl
 
-import yaml
-
 
 SOCKET_TIMEOUT = 1  # Seconds
 DOWN = 'down'
@@ -96,13 +94,13 @@ class Server:
     client: PING|BOOT<uptime>
     """
 
-    def __init__(self, address, port, config_file):
-        self.address = address
-        self.port = port
+    def __init__(self, config_file):
+        self.config = json.load(config_file)
+        self.address = config.get('listen_address')
+        self.port = config.get('listen_port')
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.settimeout(SOCKET_TIMEOUT)
         self._clients = {}
-        self.config = yaml.load(config_file, yaml.Loader)
 
     def read(self):
         buf = b''
@@ -149,14 +147,12 @@ class Server:
 
 
 
-def main(listen, port, config_file):
-    Server('0.0.0.0', 7777, config_file).serve_forever()
+def main(config_file):
+    Server(config_file).serve_forever()
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--listen', required=True)
-    parser.add_argument('-p', '--port', type=int, required=True)
     parser.add_argument('-c', '--config', type=argparse.FileType('r'), required=True)
     args = parser.parse_args()
     main(args.listen, args.port, args.config)

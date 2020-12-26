@@ -1,0 +1,13 @@
+{
+	"username": "mailbot@example.com",
+	"password": "super secret smtp password",
+	"smtp_server": "smtp.example.com",
+	"smtp_port": 587 ,
+	"alert_address": "oncall@example.com",
+	"client_log_dir": "/var/log/netmonitor",
+	"listen_port": 7777,
+	"listen_address": "0.0.0.0",
+	"down_interval": {
+		"minutes": 3
+	}
+}
